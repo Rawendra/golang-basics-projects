@@ -2,19 +2,14 @@ package main
 
 import (
 	"fmt"
-	"net/http"
-	"os"
 )
 
 func main() {
-	fmt.Println("this is init")
-	url := "http://google.com"
-	response, err := http.Get(url)
-	if err != nil {
-		fmt.Println("Error:", err)
-		os.Exit(1)
-	}
-	bs := make([]byte, 99999)
-	response.Body.Read(bs) //reads the response bytes and pushes them in bs
-	fmt.Println(string(bs))
+	rectangle := Reactangle{height: 40, width: 30}
+	square := Square{side: 50}
+	circle := Circle{radius: 7}
+	fmt.Println("area of reactangle", getArea(rectangle))
+	fmt.Println("area of square", getArea(square))
+	fmt.Println("area of circle", getArea(circle))
+
 }
