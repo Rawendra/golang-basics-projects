@@ -18,8 +18,8 @@ func main() {
 		go checkLink(link, c)
 	}
 
-	for index := 0; index < len(links); index++ {
-		fmt.Println(<-c)
+	for {
+		go checkLink(<-c, c)
 	}
 }
 
@@ -28,10 +28,10 @@ func checkLink(link string, c chan string) {
 	_, err := http.Get(link)
 	if err != nil {
 		fmt.Println(link, "the link is not working it seems")
-		c <- "the link is not working it seems"
+		c <- link
 		return
 	}
 	fmt.Println(link, "link is working fine")
-	c <- "link is working fine"
+	c <- link
 
 }
